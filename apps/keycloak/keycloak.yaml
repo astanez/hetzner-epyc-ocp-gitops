@@ -1,0 +1,23 @@
+apiVersion: k8s.keycloak.org/v2alpha1
+kind: Keycloak
+metadata:
+  name: epyc-keycloak
+  namespace: keycloak
+spec:
+  instances: 1
+  db:
+    vendor: postgres
+    host: postgres-keycloak-service.keycloak.svc.cluster.local
+    port: 5432
+    usernameSecret:
+      name: keycloak-db-secret
+      key: POSTGRES_USER
+    passwordSecret:
+      name: keycloak-db-secret
+      key: POSTGRES_PASSWORD
+    database: keycloak
+  http:
+    tlsSecret: epyc-keycloak-tls-secret
+  ingress:
+    enabled: true
+    className: openshift-default
