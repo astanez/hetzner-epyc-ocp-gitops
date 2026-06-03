@@ -8,7 +8,7 @@ spec:
   source:
     repoURL: 'https://github.com/astanez/hetzner-epyc-ocp-gitops.git'
     targetRevision: HEAD
-    path: namespaces                  # Watches the parent 'apps' folder recursively
+    path: apps                  # Watches the parent 'apps' folder recursively
   destination:
     server: 'https://kubernetes.default.svc'
     namespace: openshift-gitops
