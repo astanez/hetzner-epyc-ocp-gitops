@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: Namespace
 metadata:
-  name: keycloak2
+  name: keycloak
   labels:
     # This label allows Argo CD to manage resources inside this namespace
     argocd.argoproj.io/instance: openshift-gitops 
