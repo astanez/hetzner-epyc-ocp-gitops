@@ -1,0 +1,22 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: keycloak-deployment
+  namespace: openshift-gitops
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io # Deletes resources if app is removed
+spec:
+  project: default
+  source:
+    repoURL: 'https://github.com/astanez/hetzner-epyc-ocp-gitops.git'
+    targetRevision: HEAD
+    path: apps/keycloak # Path to your actual Keycloak manifests/YAMLs
+  destination:
+    server: 'https://kubernetes.default.svc'
+    namespace: keycloak
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true # Automatically creates the 'keycloak' namespace
