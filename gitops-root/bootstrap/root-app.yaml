@@ -1,0 +1,18 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: root-app-of-apps
+  namespace: openshift-gitops
+spec:
+  project: default
+  source:
+    repoURL: 'https://github.com/astanez/hetzner-epyc-ocp-gitops.git'
+    targetRevision: HEAD
+    path: apps                  # Watches the parent 'apps' folder recursively
+  destination:
+    server: 'https://kubernetes.default.svc'
+    namespace: openshift-gitops
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
