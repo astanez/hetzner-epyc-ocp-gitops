@@ -2,6 +2,12 @@ apiVersion: user.openshift.io/v1
 kind: Group
 metadata:
   name: ocp-cluster-admins # Matches the Keycloak group name exactly
+spec:
+  ignoreDifferences:
+  - group: user.openshift.io
+    kind: Group
+    jsonPointers:
+    - /users
 ---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRoleBinding
