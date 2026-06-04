@@ -7,6 +7,11 @@ metadata:
     - resources-finalizer.argocd.argoproj.io # Deletes resources if app is removed
 spec:
   project: default
+  ignoreDifferences:
+  - group: user.openshift.io
+    kind: Group
+    jsonPointers:
+    - /users
   source:
     repoURL: 'https://github.com/astanez/hetzner-epyc-ocp-gitops.git'
     targetRevision: HEAD
@@ -20,3 +25,4 @@ spec:
       selfHeal: true
     syncOptions:
       - CreateNamespace=true # Automatically creates the 'keycloak' namespace
+  
