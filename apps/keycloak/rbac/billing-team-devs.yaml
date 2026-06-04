@@ -2,6 +2,7 @@ apiVersion: user.openshift.io/v1
 kind: Group
 metadata:
   name: billing-team-devs # Matches the Keycloak group name exactly
+users: 
 ---
 apiVersion: v1
 kind: Namespace
