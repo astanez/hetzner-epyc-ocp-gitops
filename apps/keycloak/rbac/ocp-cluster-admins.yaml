@@ -1,0 +1,18 @@
+apiVersion: user.openshift.io/v1
+kind: Group
+metadata:
+  name: ocp-cluster-admins # Matches the Keycloak group name exactly
+users: [] # Leave empty; OpenShift will dynamically populate this based on the token
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: keycloak-cluster-admin-binding
+subjects:
+- kind: Group
+  name: ocp-cluster-admins
+  apiGroup: rbac.authorization.k8s.io
+roleRef:
+  kind: ClusterRole
+  name: cluster-admin # Out-of-the-box OpenShift superuser role
+  apiGroup: rbac.authorization.k8s.io

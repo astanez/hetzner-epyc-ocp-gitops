@@ -1,0 +1,19 @@
+apiVersion: user.openshift.io/v1
+kind: Group
+metadata:
+  name: billing-team-devs # Matches the Keycloak group name exactly
+users: []
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: billing-dev-binding
+  namespace: epyc-dev-project # Restricted to this project
+subjects:
+- kind: Group
+  name: billing-team-devs
+  apiGroup: rbac.authorization.k8s.io
+roleRef:
+  kind: ClusterRole
+  name: edit # Out-of-the-box OpenShift role allowing deployment management but no quota editing
+  apiGroup: rbac.authorization.k8s.io
