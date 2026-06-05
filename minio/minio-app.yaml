@@ -6,7 +6,7 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: 'https://github.com/your-username/your-infra-repo.git' # Replace with your repo URL
+    repoURL: 'https://github.com/astanez/hetzner-epyc-ocp-gitops.git' # Replace with your repo URL
     targetRevision: HEAD
     path: minio
   destination:
